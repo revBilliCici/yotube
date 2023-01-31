@@ -1,28 +1,28 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
 a {
-  text-decoration: none;
-  color: black;
+  text-decoration: none !important;
+  color: black !important;
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
-  height: 5px;
+  width: 0px !important;
+  height: 5px !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(114, 113, 113);
-  border-radius: 10px;
-  height: 200px;
+  background-color: rgb(114, 113, 113) !important;
+  border-radius: 10px !important;
+  height: 200px !important;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .category-btn:hover {
