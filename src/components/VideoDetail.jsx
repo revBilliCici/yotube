@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Box, Stack, Button } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
 import Videos from "./Videos";
@@ -27,8 +27,24 @@ const VideoDetail = () => {
     statistics: { viewCount, likeCount },
   } = videoDetail;
 
+  const handleDownload = async (e) => {
+    await navigator.share({
+      title: title,
+      text: "Download Through Vidmate",
+      url: `https://www.youtube.com/watch?v=${id}`,
+    });
+  };
+
   return (
     <Box minHeight={"95vh"}>
+      <Button
+        variant="contained"
+        color="success"
+        onClick={handleDownload}
+        sx={{ position: "fixed", bottom: "50px", right: "50px", zIndex: 999 }}
+      >
+        Share
+      </Button>
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
