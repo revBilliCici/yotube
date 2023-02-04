@@ -26,7 +26,11 @@ const Sidebar = ({ selectedCategory, setselectedCategory }) => {
           <span
             style={{
               color: category.name === selectedCategory ? "white" : "red",
-              marginRight: "15px",
+              paddingRight: "15px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
             }}
           >
             {category.icon}

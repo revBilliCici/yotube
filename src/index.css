@@ -65,6 +65,7 @@ a {
 @media screen and (max-width: 900px) {
   .category-btn {
     margin: 10px !important;
+    min-width: fit-content !important;
   }
 }
 
@@ -84,5 +85,11 @@ a {
   }
   .search-bar {
     width: 200px !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .search-bar {
+    width: 150px !important;
   }
 }
