@@ -29,7 +29,7 @@ const SearchFeed = () => {
     });
   };
 
-  if (!data)
+  if (Object.keys(data).length === 0)
     return (
       <Typography variant="h2" color={"white"}>
         ...Loading
