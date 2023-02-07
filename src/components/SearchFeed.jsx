@@ -7,43 +7,25 @@ import { fetchFromAPI } from "../utils/fetchFromAPI";
 const SearchFeed = () => {
   const { searchTerm } = useParams();
   const [data, setData] = useState({});
-  const [videos, setVideos] = useState([]);
-  const [nextPageToken, setNextPageToken] = useState("");
-  const [prevPageToken, setPrevPageToken] = useState("");
-  const [isdisabled, setIsdisabled] = useState(false);
   useEffect(() => {
     fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) => {
       setData(data);
-      setVideos(data.items);
-      setNextPageToken(data.nextPageToken);
-      setIsdisabled(true);
     });
   }, [searchTerm]);
 
   const handlePrev = (e) => {
     fetchFromAPI(
-      `search?part=snippet&q=${searchTerm}&pageToken=${prevPageToken}`
+      `search?part=snippet&q=${searchTerm}&pageToken=${data?.prevPageToken}`
     ).then((data) => {
-      setVideos(data.items);
-      setNextPageToken(data.nextPageToken);
-      if (data.prevPageToken) {
-        setPrevPageToken(data.prevPageToken);
-        setIsdisabled(false);
-      } else {
-        setIsdisabled(true);
-        setPrevPageToken("");
-      }
+      setData(data);
     });
   };
 
   const handleNext = (e) => {
     fetchFromAPI(
-      `search?part=snippet&q=${searchTerm}&pageToken=${nextPageToken}`
+      `search?part=snippet&q=${searchTerm}&pageToken=${data?.nextPageToken}`
     ).then((data) => {
-      setVideos(data.items);
-      setNextPageToken(data.nextPageToken);
-      setPrevPageToken(data.prevPageToken);
-      setIsdisabled(false);
+      setData(data)
     });
   };
 
@@ -65,9 +47,9 @@ const SearchFeed = () => {
         Search Results for:{" "}
         <span style={{ color: "#FC1503" }}>{searchTerm}</span> Videos
       </Typography>
-      <Videos videos={videos} />
+      <Videos videos={data?.items} />
       <Box justifyContent={"center"} display={"flex"} p={4}>
-        {!isdisabled ? (
+        {data?.prevPageToken ? (
           <Button variant="text" onClick={handlePrev}>
             {console.log(data)}
             Previous
